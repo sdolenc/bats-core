@@ -67,8 +67,8 @@ workflows:
       - bash_4_1
       - bash_4_0
       - bash_3_2
-      - bash_3_1
-      - bash_3_0
-      - bash_2_05b
-      - bash_2_05a
-      - bash_2_03
+#      - bash_3_1
+#      - bash_3_0
+#      - bash_2_05b
+#      - bash_2_05a
+#      - bash_2_03
