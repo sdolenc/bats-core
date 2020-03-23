@@ -8,6 +8,7 @@ jobs:
       - checkout
       - run:
           command: |
+            alias bash="sh"
             bash --version | head -2
             df --version | head -2 || true
             bash ./install.sh
