@@ -12,7 +12,13 @@ if [[ -z "$PREFIX" ]]; then
   exit 1
 fi
 
-install -d -m 755 "$PREFIX"/{bin,libexec/bats-core,share/man/man{1,7}}
+# directory setup
+install -d -m 755 "$PREFIX"/bin
+install -d -m 755 "$PREFIX"/libexec/bats-core
+install -d -m 755 "$PREFIX"/share/man/man1
+install -d -m 755 "$PREFIX"/share/man/man7
+
+# installs
 install -m 755 "$BATS_ROOT/bin"/* "$PREFIX/bin"
 install -m 755 "$BATS_ROOT/libexec/bats-core"/* "$PREFIX/libexec/bats-core"
 install -m 644 "$BATS_ROOT/man/bats.1" "$PREFIX/share/man/man1"
