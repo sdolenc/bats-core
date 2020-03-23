@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -ex
 
 BATS_ROOT="${0%/*}"
 PREFIX="$1"
