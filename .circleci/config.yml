@@ -11,7 +11,7 @@ jobs:
             alias bash="sh"
             bash --version | head -2
             df --version | head -2 || true
-            bash ./install.sh
+            bash ./install.sh /usr/local
             command -v bats
             bash -c 'PATH="/usr/bin:${PATH}" bin/bats test'
 workflows:
