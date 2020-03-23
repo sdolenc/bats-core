@@ -1,74 +1,20 @@
 version: 2.1
 
 jobs:
-  bash_5_0:
+  linuxkit_dm-crypt:
     docker:
-      - image: bash:5.0
-    <<: &commonSteps
-      steps:
-        - checkout
-        - run:
-            shell: /bin/sh -e
-            command: |
-              bash --version
-              bash -c 'PATH="/usr/bin:${PATH}" bin/bats test'
-  bash_4_4:
-    docker:
-      - image: bash:4.4
-    <<: *commonSteps
-  bash_4_3:
-    docker:
-      - image: bash:4.3
-    <<: *commonSteps
-  bash_4_2:
-    docker:
-      - image: bash:4.2
-    <<: *commonSteps
-  bash_4_1:
-    docker:
-      - image: bash:4.1
-    <<: *commonSteps
-  bash_4_0:
-    docker:
-      - image: bash:4.0
-    <<: *commonSteps
-  bash_3_2:
-    docker:
-      - image: bash:3.2
-    <<: *commonSteps
-  bash_3_1:
-    docker:
-      - image: bash:3.1
-    <<: *commonSteps
-  bash_3_0:
-    docker:
-      - image: bash:3.0
-    <<: *commonSteps
-  bash_2_05b:
-    docker:
-      - image: sdolenc/debian-circleci:sarge
-    <<: *commonSteps
-  bash_2_05a:
-    docker:
-      - image: sdolenc/debian-circleci:woody
-    <<: *commonSteps
-  bash_2_03:
-    docker:
-      - image: sdolenc/debian-circleci:potato
-    <<: *commonSteps
+      - image: linuxkit/dm-crypt
+    steps:
+      - checkout
+      - run:
+          command: |
+            bash --version | head -2
+            df --version | head -2 || true
+            bash ./install.sh
+            command -v bats
+            bash -c 'PATH="/usr/bin:${PATH}" bin/bats test'
 workflows:
   version: 2
   all:
     jobs:
-      - bash_5_0
-      - bash_4_4
-      - bash_4_3
-      - bash_4_2
-      - bash_4_1
-      - bash_4_0
-      - bash_3_2
-#      - bash_3_1
-#      - bash_3_0
-#      - bash_2_05b
-#      - bash_2_05a
-#      - bash_2_03
+      - linuxkit_dm-crypt
